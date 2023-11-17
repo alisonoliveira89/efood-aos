@@ -6,6 +6,7 @@ export const Container = styled.header<Props>`
   height: ${(props) => (props.header === 'home' ? '384px' : '186px')};
   background-color: ${colors.salmon};
   text-align: center;
+  font-size: 18px;
 `
 
 export const Slogan = styled.div`

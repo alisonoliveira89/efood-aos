@@ -21,9 +21,10 @@ export const Imagem = styled.div`
 `
 
 export const Categoria = styled.h2`
+  position: relative;
   color: ${colors.white};
   font-size: 32px;
-  font-weight: normal;
+  font-weight: 100;
 `
 export const Titulo = styled.h1`
   position: relative;

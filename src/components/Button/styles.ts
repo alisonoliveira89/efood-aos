@@ -22,6 +22,7 @@ export const ButtonContainer = styled.button<Props>`
 export const ButtonLink = styled(Link)`
   background-color: ${colors.red};
   color: ${colors.salmon};
+  font-size: 14px;
   padding: 4px 6px;
   border: 2px solid ${colors.red};
   text-decoration: none;
