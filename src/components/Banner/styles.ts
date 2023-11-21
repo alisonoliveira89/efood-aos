@@ -20,7 +20,7 @@ export const Imagem = styled.div`
   }
 `
 
-export const Categoria = styled.h2`
+export const Tipo = styled.h2`
   position: relative;
   color: ${colors.white};
   font-size: 32px;

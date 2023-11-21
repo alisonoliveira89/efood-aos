@@ -1,63 +1,44 @@
+import { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import FoodsList from '../../components/FoodsList'
 import Header from '../../components/Header'
 
-import foodImg from '../../assets/images/food-la-dolce.png'
-import Food from '../../models/Food'
+import { useParams } from 'react-router-dom'
+import { Restaurant } from '../Home'
 
-const foods: Food[] = [
-  {
-    id: 1,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
-  },
-  {
-    id: 2,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
-  },
-  {
-    id: 3,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
-  },
-  {
-    id: 4,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
-  },
-  {
-    id: 5,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
-  },
-  {
-    id: 6,
-    title: 'Pizza Marguerita',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    image: foodImg
+const Profile = () => {
+  const { id } = useParams()
+
+  const [food, setFood] = useState<Restaurant>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setFood(res))
+  }, [id])
+
+  // useEffect(() => {
+  //   if (xfood) {
+  //     console.log('XFood atualizado')
+  //     for (const item of xfood.cardapio) {
+  //       console.log('Id ', item.id, ' Nome: ', item.nome)
+  //     }
+  //   }
+  // }, [food])
+
+  if (!food) {
+    return <h3>Carregando...</h3>
   }
-]
 
-const Profile = () => (
-  <>
-    <Header header="profile" />
-    <Banner />
-    <div className="container">
-      <FoodsList food={foods} />
-    </div>
-  </>
-)
+  return (
+    <>
+      <Header header="profile" />
+      <Banner titulo={food.titulo} tipo={food.tipo} />
+      <div className="container">
+        <FoodsList food={food} />
+      </div>
+    </>
+  )
+}
 
 export default Profile

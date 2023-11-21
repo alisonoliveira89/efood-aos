@@ -9,6 +9,13 @@ export const Card = styled.div`
     color: ${colors.salmon};
     margin-top: 8px;
   }
+
+  > img {
+    max-width: 304px;
+    width: 100%;
+    height: 167px;
+    object-fit: cover;
+  }
 `
 export const Title = styled.h3`
   font-size: 16px;

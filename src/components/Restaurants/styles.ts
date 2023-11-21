@@ -8,6 +8,13 @@ export const Card = styled.div`
   ${TagContainer} {
     margin-right: 8px;
   }
+
+  > img {
+    max-width: 472px;
+    width: 100%;
+    height: 217px;
+    object-fit: cover;
+  }
 `
 
 export const Info = styled.div`
@@ -15,6 +22,7 @@ export const Info = styled.div`
   border-right: 1px solid ${colors.red};
   border-bottom: 1px solid ${colors.red};
   border-left: 1px solid ${colors.red};
+  height: 181px;
 `
 export const TagInfo = styled.div`
   position: absolute;
