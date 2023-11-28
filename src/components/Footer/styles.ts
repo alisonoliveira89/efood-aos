@@ -16,7 +16,8 @@ export const Media = styled.ul`
 `
 
 export const Info = styled.div`
-  width: 480px;
+  max-width: 480px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   font-size: 10px;

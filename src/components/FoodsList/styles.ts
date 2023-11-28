@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
 export const Container = styled.div`
@@ -12,6 +12,14 @@ export const List = styled.ul`
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 32px;
   row-gap: 32px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const Overlay = styled.div`
@@ -46,6 +54,15 @@ export const Modal = styled.div`
     font-size: 20px;
     cursor: pointer;
   }
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 90%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    height: auto;
+  }
 `
 
 export const ModalContent = styled.div`
@@ -58,7 +75,8 @@ export const ModalContent = styled.div`
   }
 
   p {
-    width: 656px;
+    max-width: 656px;
+    width: 100%;
     font-size: 14px;
     font-weight: 400;
     color: ${colors.white};
@@ -71,6 +89,10 @@ export const ModalContent = styled.div`
     width: 280px;
     height: 280px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
   }
 
   .infos {
@@ -78,6 +100,10 @@ export const ModalContent = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin-left: 16px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      margin: 0;
+    }
   }
 
   ${ButtonContainer} {
@@ -86,5 +112,13 @@ export const ModalContent = styled.div`
     margin-bottom: 26px;
     max-width: 220px;
     height: 24px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
   }
 `

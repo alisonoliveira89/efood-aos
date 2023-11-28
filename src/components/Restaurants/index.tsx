@@ -20,12 +20,12 @@ const Restaurants = ({
   infos,
   id
 }: Props) => {
-  const getDescription = (text: string) => {
-    if (text.length > 249) {
-      return text.slice(0, 246) + '...'
-    }
-    return text
-  }
+  // const getDescription = (text: string) => {
+  //   if (text.length > 349) {
+  //     return text.slice(0, 246) + '...'
+  //   }
+  //   return text
+  // }
 
   return (
     <S.Card>
@@ -43,7 +43,7 @@ const Restaurants = ({
             <img src={star} alt="Estrela" />
           </S.Points>
         </S.Points>
-        <S.Description>{getDescription(description)}</S.Description>
+        <S.Description>{description}</S.Description>
         <Button type="link" to={`/profile/${id}`}>
           Saiba mais
         </Button>

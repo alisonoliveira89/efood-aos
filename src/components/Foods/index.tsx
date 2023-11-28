@@ -9,12 +9,12 @@ type Props = {
 }
 
 const Foods = ({ title, description, image, onClick }: Props) => {
-  const getDescription = (text: string) => {
-    if (text.length > 166) {
-      return text.slice(0, 163) + '...'
-    }
-    return text
-  }
+  // const getDescription = (text: string) => {
+  //   if (text.length > 166) {
+  //     return text.slice(0, 163) + '...'
+  //   }
+  //   return text
+  // }
 
   return (
     <>
@@ -22,7 +22,7 @@ const Foods = ({ title, description, image, onClick }: Props) => {
         <img src={image} alt={title} />
         <div>
           <S.Title className="profile">{title}</S.Title>
-          <S.Text className="profile">{getDescription(description)}</S.Text>
+          <S.Text className="profile">{description}</S.Text>
           <Button type="button" variant="secondary" onClick={onClick}>
             Mais detalhes
           </Button>

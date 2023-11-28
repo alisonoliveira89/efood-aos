@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import Foods from '../Foods'
 import { Container, List, Modal, ModalContent, Overlay } from './styles'
 
+import { useDispatch } from 'react-redux'
 import closeImg from '../../assets/images/close.png'
 import Button from '../Button'
 import { FoodMenu, Restaurant } from '../../pages/Home'
+import { add } from '../../store/reducers/cart'
+import { parseToBrl } from '../../utils'
 
 type Props = {
   food: Restaurant
@@ -13,6 +16,7 @@ type Props = {
 const FoodsList = ({ food }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   const [foodSelect, setFoodSelect] = useState<FoodMenu>()
+  const dispatch = useDispatch()
 
   const openModal = (item: FoodMenu) => {
     setIsOpen(true)
@@ -23,11 +27,12 @@ const FoodsList = ({ food }: Props) => {
     setIsOpen(false)
   }
 
-  const parseToBrl = (amount = 0) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(amount)
+  const addToCart = () => {
+    if (foodSelect) {
+      dispatch(add(foodSelect))
+      closeModal()
+      //dispatch(open())
+    }
   }
 
   useEffect(() => {
@@ -72,7 +77,7 @@ const FoodsList = ({ food }: Props) => {
               onClick={closeModal}
             ></img>
           </span>
-          <ModalContent className="container">
+          <ModalContent>
             <img src={foodSelect?.foto} alt="Imagem da comida"></img>
             <div className="infos">
               <h4>{foodSelect?.nome}</h4>
@@ -81,7 +86,7 @@ const FoodsList = ({ food }: Props) => {
                 <br></br>
                 <br></br> {foodSelect?.porcao}
               </p>
-              <Button type="button" variant="secondary">
+              <Button type="button" variant="secondary" onClick={addToCart}>
                 {`Adicionar ao carrinho - ` + parseToBrl(foodSelect?.preco)}
               </Button>
             </div>

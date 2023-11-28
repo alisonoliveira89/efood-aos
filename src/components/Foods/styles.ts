@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Card = styled.div`
   padding: 8px;
@@ -15,6 +15,10 @@ export const Card = styled.div`
     width: 100%;
     height: 167px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      max-width: 100%;
+    }
   }
 `
 export const Title = styled.h3`
@@ -25,4 +29,6 @@ export const Text = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
+  overflow: auto;
+  max-height: 90px;
 `

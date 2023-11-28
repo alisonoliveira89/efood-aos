@@ -1,30 +1,13 @@
-import { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import FoodsList from '../../components/FoodsList'
 import Header from '../../components/Header'
 
 import { useParams } from 'react-router-dom'
-import { Restaurant } from '../Home'
+import { useGetRestaurSelectQuery } from '../../services/api'
 
 const Profile = () => {
   const { id } = useParams()
-
-  const [food, setFood] = useState<Restaurant>()
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((res) => res.json())
-      .then((res) => setFood(res))
-  }, [id])
-
-  // useEffect(() => {
-  //   if (xfood) {
-  //     console.log('XFood atualizado')
-  //     for (const item of xfood.cardapio) {
-  //       console.log('Id ', item.id, ' Nome: ', item.nome)
-  //     }
-  //   }
-  // }, [food])
+  const { data: food } = useGetRestaurSelectQuery(id!)
 
   if (!food) {
     return <h3>Carregando...</h3>

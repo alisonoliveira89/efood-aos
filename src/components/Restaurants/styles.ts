@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
+import { ButtonLink } from '../Button/styles'
 
 export const Card = styled.div`
   position: relative;
@@ -14,6 +15,10 @@ export const Card = styled.div`
     width: 100%;
     height: 217px;
     object-fit: cover;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      height: 178px;
+    }
   }
 `
 
@@ -23,6 +28,10 @@ export const Info = styled.div`
   border-bottom: 1px solid ${colors.red};
   border-left: 1px solid ${colors.red};
   height: 181px;
+
+  ${ButtonLink} {
+    font-size: 14px;
+  }
 `
 export const TagInfo = styled.div`
   position: absolute;
@@ -40,10 +49,17 @@ export const Title = styled.h3`
   font-size: 18px;
   font-weight: 700;
   margin-right: 8px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 16px;
+    font-weight: 700;
+  }
 `
 export const Description = styled.p`
   font-size: 14px;
   line-height: 22px;
   margin-bottom: 20px;
   margin-top: 16px;
+  overflow: auto;
+  max-height: 90px;
 `
