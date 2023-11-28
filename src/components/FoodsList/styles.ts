@@ -60,8 +60,9 @@ export const Modal = styled.div`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
+    padding: 12px;
     width: 90%;
-    height: 60%;
+    height: auto;
   }
 `
 
@@ -83,6 +84,10 @@ export const ModalContent = styled.div`
     margin-top: 16px;
     margin-bottom: 16px;
     line-height: 22px;
+    @media (max-width: ${breakpoints.tablet}) {
+      overflow-y: auto;
+      height: 100px;
+    }
   }
 
   img {
@@ -91,8 +96,7 @@ export const ModalContent = styled.div`
     object-fit: cover;
 
     @media (max-width: ${breakpoints.tablet}) {
-      width: 100%;
-      height: 30%;
+      height: 180px;
     }
   }
 

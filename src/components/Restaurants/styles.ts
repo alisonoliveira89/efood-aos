@@ -17,6 +17,7 @@ export const Card = styled.div`
     object-fit: cover;
 
     @media (max-width: ${breakpoints.desktop}) {
+      max-width: 100%;
       height: 178px;
     }
   }
