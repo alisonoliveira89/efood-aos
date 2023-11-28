@@ -61,7 +61,7 @@ export const Modal = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 90%;
-    height: auto;
+    height: 60%;
   }
 `
 
@@ -92,6 +92,7 @@ export const ModalContent = styled.div`
 
     @media (max-width: ${breakpoints.tablet}) {
       width: 100%;
+      height: 30%;
     }
   }
 

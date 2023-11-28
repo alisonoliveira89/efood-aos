@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import trashImg from '../../assets/images/trash.png'
 import { ButtonContainer } from '../Button/styles'
 
@@ -26,6 +26,10 @@ export const CartContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   z-index: 1;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 320px;
+  }
 `
 export const SideBar = styled.aside`
   background-color: ${colors.red};
