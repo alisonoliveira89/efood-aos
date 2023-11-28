@@ -24,11 +24,11 @@ export const Card = styled.div`
 `
 
 export const Info = styled.div`
-  padding: 0 8px 16px 8px;
+  padding: 8px 8px 16px 8px;
   border-right: 1px solid ${colors.red};
   border-bottom: 1px solid ${colors.red};
   border-left: 1px solid ${colors.red};
-  height: 181px;
+  margin-top: -4px;
 
   ${ButtonLink} {
     font-size: 14px;
