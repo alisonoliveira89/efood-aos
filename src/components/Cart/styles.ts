@@ -30,7 +30,8 @@ export const CartContainer = styled.div`
 export const SideBar = styled.aside`
   background-color: ${colors.red};
   width: 100%;
-  padding: 32px 8px 0 8px;
+  padding: 32px 8px 32px 8px;
+  overflow-x: auto;
 
   > div {
     display: flex;
