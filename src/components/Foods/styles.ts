@@ -1,13 +1,24 @@
 import styled from 'styled-components'
 import { breakpoints, colors } from '../../styles'
+import { ButtonContainer } from '../Button/styles'
 
 export const Card = styled.div`
   padding: 8px;
   background-color: ${colors.red};
 
-  .profile {
+  ${ButtonContainer} {
+    padding: 0;
+    height: 24px;
+  }
+
+  h3,
+  p {
     color: ${colors.salmon};
     margin-top: 8px;
+  }
+
+  h3 {
+    margin-top: 4px;
   }
 
   > img {
@@ -29,6 +40,4 @@ export const Text = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
-  overflow: auto;
-  max-height: 90px;
 `

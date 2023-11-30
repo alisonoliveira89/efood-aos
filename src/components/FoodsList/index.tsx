@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import closeImg from '../../assets/images/close.png'
 import Button from '../Button'
 import { FoodMenu, Restaurant } from '../../pages/Home'
-import { add } from '../../store/reducers/cart'
+import { add, open } from '../../store/reducers/cart'
 import { parseToBrl } from '../../utils'
 
 type Props = {
@@ -31,7 +31,7 @@ const FoodsList = ({ food }: Props) => {
     if (foodSelect) {
       dispatch(add(foodSelect))
       closeModal()
-      //dispatch(open())
+      dispatch(open())
     }
   }
 

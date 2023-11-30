@@ -4,25 +4,26 @@ import logo from '../../assets/images/logo.svg'
 import instagram from '../../assets/images/instagram.svg'
 import facebook from '../../assets/images/facebook.svg'
 import twitter from '../../assets/images/twitter.svg'
+import { Link } from 'react-router-dom'
 
 const Footer = () => (
   <S.Container>
     <img className="logo" src={logo} alt="Logo eFood" />
     <S.Media>
       <li>
-        <a href="">
+        <Link to="">
           <img src={instagram} alt="Lodo do Instagram" />
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="">
+        <Link to="">
           <img src={facebook} alt="Lodo do Facebook" />
-        </a>
+        </Link>
       </li>
       <li>
-        <a href="">
+        <Link to="">
           <img src={twitter} alt="Lodo do Twitter" />
-        </a>
+        </Link>
       </li>
     </S.Media>
     <S.Info>

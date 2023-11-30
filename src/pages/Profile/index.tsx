@@ -17,8 +17,10 @@ const Profile = () => {
     <>
       <Header header="profile" />
       <Banner titulo={food.titulo} tipo={food.tipo} />
-      <div className="container">
-        <FoodsList food={food} />
+      <div className="back-container">
+        <div className="container">
+          <FoodsList food={food} />
+        </div>
       </div>
     </>
   )

@@ -3,7 +3,8 @@ import { createGlobalStyle } from 'styled-components'
 export const colors = {
   red: '#E66767',
   salmon: '#FFEBD9',
-  white: '#FFF'
+  white: '#FFF',
+  offWhite: '#FFF8F2'
 }
 
 export const breakpoints = {
@@ -26,6 +27,10 @@ export const GlobalCss = createGlobalStyle`
 
   .logo {
     margin-top: 64px;
+  }
+
+  .back-container {
+    background-color: ${colors.offWhite};
   }
 
   .container {

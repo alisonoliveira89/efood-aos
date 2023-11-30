@@ -10,7 +10,7 @@ export const ButtonContainer = styled.button<Props>`
   color: ${(props) =>
     props.variant === 'primary' ? colors.salmon : colors.red};
   padding: 4px 6px;
-  border: 2px solid
+  border: 1px solid
     ${(props) => (props.variant === 'primary' ? colors.red : colors.salmon)};
   width: 100%;
   font-size: 14px;
@@ -24,6 +24,7 @@ export const ButtonLink = styled(Link)`
   color: ${colors.salmon};
   font-size: 14px;
   padding: 4px 6px;
-  border: 2px solid ${colors.red};
+  border: 1px solid ${colors.red};
   text-decoration: none;
+  cursor: pointer;
 `

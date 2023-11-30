@@ -12,7 +12,7 @@ export const Container = styled.header<Props>`
 export const Slogan = styled.div`
   max-width: 540px;
   margin: 0 auto;
-  margin-top: 140px;
+  margin-top: 132px;
 `
 
 export const Title = styled.h1`
@@ -31,10 +31,7 @@ export const Logo = styled.img`
 export const HProfile = styled.div`
   display: flex;
   justify-content: center;
-  //align-items: center;
   height: 100%;
-  //max-width: 1024px;
-  //width: 100%;
   position: relative;
 `
 export const Text = styled.h3`
@@ -44,6 +41,9 @@ export const Text = styled.h3`
 export const DivCart = styled.div`
   margin-left: auto;
   margin-top: 82px;
+  max-width: 250px;
+  width: 100%;
+  text-align: end;
 `
 export const CartButton = styled.a`
   font-size: 18px;

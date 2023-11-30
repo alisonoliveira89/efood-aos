@@ -7,7 +7,7 @@ export const Card = styled.div`
   position: relative;
 
   ${TagContainer} {
-    margin-right: 8px;
+    margin-left: 8px;
   }
 
   > img {
@@ -24,7 +24,7 @@ export const Card = styled.div`
 `
 
 export const Info = styled.div`
-  padding: 8px 8px 16px 8px;
+  padding: 8px 8px 12px 8px;
   border-right: 1px solid ${colors.red};
   border-bottom: 1px solid ${colors.red};
   border-left: 1px solid ${colors.red};
@@ -32,6 +32,7 @@ export const Info = styled.div`
 
   ${ButtonLink} {
     font-size: 14px;
+    font-weight: 700;
   }
 `
 export const TagInfo = styled.div`
@@ -61,6 +62,8 @@ export const Description = styled.p`
   line-height: 22px;
   margin-bottom: 20px;
   margin-top: 16px;
-  overflow: auto;
-  max-height: 90px;
+  @media (max-width: ${breakpoints.desktop}) {
+    overflow-y: auto;
+    height: 100px;
+  }
 `

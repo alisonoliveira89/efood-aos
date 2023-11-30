@@ -3,8 +3,8 @@ import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
 export const Container = styled.div`
-  margin-top: 56px;
-  margin-bottom: 120px;
+  padding-top: 56px;
+  padding-bottom: 120px;
 `
 
 export const List = styled.ul`
