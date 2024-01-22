@@ -3,8 +3,13 @@ import { Link } from 'react-router-dom'
 import * as S from './styles'
 
 import logo from '../../assets/images/logo.svg'
+import cartIcon from '../../assets/images/cart.svg'
+
 import { open } from '../../store/reducers/cart'
 import { RootReducer } from '../../store'
+import { changeStatus } from '../../store/reducers/status'
+
+import { Status } from '../../utils/enums/Status'
 
 export type Props = {
   header: 'home' | 'profile'
@@ -13,9 +18,13 @@ export type Props = {
 const Header = ({ header }: Props) => {
   const dispatch = useDispatch()
   const { items } = useSelector((state: RootReducer) => state.cart)
+  //const { status } = useSelector((state: RootReducer) => state)
+
+  const newStatus = Status.Cart
 
   const openCart = () => {
     dispatch(open())
+    dispatch(changeStatus(newStatus))
   }
 
   return (
@@ -39,7 +48,9 @@ const Header = ({ header }: Props) => {
           </Link>
           <S.DivCart>
             <S.CartButton onClick={openCart}>
-              {items.length} produto(s) no carrinho
+              {items.length}
+              <span> produto(s) no carrinho</span>
+              <img src={cartIcon} alt="Cart" />
             </S.CartButton>
           </S.DivCart>
         </S.HProfile>

@@ -5,9 +5,10 @@ import { Container, List, Modal, ModalContent, Overlay } from './styles'
 import { useDispatch } from 'react-redux'
 import closeImg from '../../assets/images/close.png'
 import Button from '../Button'
-import { FoodMenu, Restaurant } from '../../pages/Home'
 import { add, open } from '../../store/reducers/cart'
 import { parseToBrl } from '../../utils'
+import { Status } from '../../utils/enums/Status'
+import { changeStatus } from '../../store/reducers/status'
 
 type Props = {
   food: Restaurant
@@ -29,9 +30,11 @@ const FoodsList = ({ food }: Props) => {
 
   const addToCart = () => {
     if (foodSelect) {
+      const cart = Status.Cart
       dispatch(add(foodSelect))
       closeModal()
       dispatch(open())
+      dispatch(changeStatus(cart))
     }
   }
 

@@ -4,3 +4,9 @@ export const parseToBrl = (amount = 0) => {
     currency: 'BRL'
   }).format(amount)
 }
+
+export const getTotalPrice = (items: FoodMenu[]) => {
+  return items.reduce((accumulator, currentItem) => {
+    return (accumulator += currentItem.preco)
+  }, 0)
+}

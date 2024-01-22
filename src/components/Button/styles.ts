@@ -17,6 +17,11 @@ export const ButtonContainer = styled.button<Props>`
   font-weight: bold;
   margin-top: 8px;
   cursor: pointer;
+
+  /* Estilos quando desabilitado */
+  &:disabled {
+    cursor: not-allowed;
+  }
 `
 
 export const ButtonLink = styled(Link)`

@@ -1,43 +1,16 @@
 import styled from 'styled-components'
-import { breakpoints, colors } from '../../styles'
+import { colors } from '../../styles'
 import trashImg from '../../assets/images/trash.png'
 import { ButtonContainer } from '../Button/styles'
 
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none;
-
-  &.is-open {
-    display: flex;
-  }
-`
-
-export const CartContainer = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 360px;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  z-index: 1;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 320px;
-  }
-`
 export const SideBar = styled.aside`
   background-color: ${colors.red};
   width: 100%;
   padding: 32px 8px 32px 8px;
   overflow-x: auto;
 
-  > div {
+  > div,
+  p {
     display: flex;
     justify-content: space-between;
     color: ${colors.salmon};
@@ -53,6 +26,7 @@ export const SideBar = styled.aside`
     padding: 0;
   }
 `
+
 export const CartItem = styled.li`
   display: flex;
   background-color: ${colors.salmon};

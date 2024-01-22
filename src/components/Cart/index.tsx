@@ -3,34 +3,32 @@ import Button from '../Button'
 
 import * as S from './styles'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
-import { parseToBrl } from '../../utils'
+import { remove } from '../../store/reducers/cart'
+import { getTotalPrice, parseToBrl } from '../../utils'
+import SideBar from '../SideBar'
+import { Status } from '../../utils/enums/Status'
+import { changeStatus } from '../../store/reducers/status'
 
 const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { cart, status } = useSelector((state: RootReducer) => state)
   const dispatch = useDispatch()
-
-  const closeCart = () => {
-    dispatch(close())
-  }
-
-  const getTotalPrice = () => {
-    return items.reduce((accumulator, currentItem) => {
-      return (accumulator += currentItem.preco)
-    }, 0)
-  }
 
   const removeItem = (id: number) => {
     dispatch(remove(id))
   }
 
+  const setNextStatus = () => {
+    const setStatus = Status.Delivery
+    dispatch(changeStatus(setStatus))
+  }
+
   return (
     <>
-      <S.Overlay onClick={closeCart} className={isOpen ? 'is-open' : ''}>
-        <S.CartContainer onClick={(e) => e.stopPropagation()}>
+      {status.status === Status.Cart ? (
+        <SideBar>
           <S.SideBar>
             <ul>
-              {items.map((item) => (
+              {cart.items.map((item) => (
                 <S.CartItem key={item.id}>
                   <img src={item.foto} alt={item.nome} />
                   <div>
@@ -41,16 +39,31 @@ const Cart = () => {
                 </S.CartItem>
               ))}
             </ul>
-            <div>
-              <h4>Valor total</h4>
-              <h4>{parseToBrl(getTotalPrice())}</h4>
-            </div>
-            <Button type="button" variant="secondary">
-              Continuar com a entrega
-            </Button>
+            {getTotalPrice(cart.items) <= 0 ? (
+              <p>
+                O carrinho está vazio, adicione um ou mais itens para continuar
+                com a compra
+              </p>
+            ) : (
+              <>
+                <div>
+                  <h4>Valor total</h4>
+                  <h4>{parseToBrl(getTotalPrice(cart.items))}</h4>
+                </div>
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={setNextStatus}
+                >
+                  Continuar com a entrega
+                </Button>
+              </>
+            )}
           </S.SideBar>
-        </S.CartContainer>
-      </S.Overlay>
+        </SideBar>
+      ) : (
+        <></>
+      )}
     </>
   )
 }
