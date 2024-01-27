@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import InputMask from 'react-input-mask'
 
@@ -24,6 +25,7 @@ export const formikDelivery = {
 const Delivery = () => {
   const { status } = useSelector((state: RootReducer) => state)
   const dispatch = useDispatch()
+  const [resetForm, setResetForm] = useState(false)
 
   const form = useFormik({
     initialValues: {
@@ -67,6 +69,19 @@ const Delivery = () => {
 
     return hasError
   }
+
+  useEffect(() => {
+    if (status.status === Status.Finish) {
+      setResetForm(true)
+    }
+  }, [status.status])
+
+  useEffect(() => {
+    if (resetForm) {
+      form.resetForm()
+      setResetForm(false)
+    }
+  }, [resetForm, form])
 
   const setPreviousStatus = () => {
     const previousStatus = Status.Cart

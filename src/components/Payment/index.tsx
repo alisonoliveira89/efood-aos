@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 
@@ -19,8 +19,10 @@ import { clear, close } from '../../store/reducers/cart'
 
 const Payment = () => {
   const { cart, status } = useSelector((state: RootReducer) => state)
-  const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
+  const [purchase, { data, isSuccess, isLoading, reset }] =
+    usePurchaseMutation()
   const dispatch = useDispatch()
+  const [resetForm, setResetForm] = useState(false)
 
   const delivery = formikDelivery.initialValues
 
@@ -33,11 +35,28 @@ const Payment = () => {
       expiresYear: ''
     },
     validationSchema: Yup.object({
-      cardName: Yup.string().required('O campo é obrigatório'),
-      cardNumber: Yup.string().required('O campo é obrigatório'),
-      cardVV: Yup.string().required('O campo é obrigatório'),
-      expiresMonth: Yup.string().required('O campo é obrigatório'),
-      expiresYear: Yup.string().required('O campo é obrigatório')
+      cardName: Yup.string()
+        .required('O campo é obrigatório')
+        .min(5, 'O nome precisa ter pelo menos 5 caracteres'),
+      cardNumber: Yup.string()
+        .required('O campo é obrigatório')
+        .matches(
+          /^\d{4} \d{4} \d{4} \d{4}$/,
+          'O numero do cartão precisa ter 16 caracteres'
+        ),
+      cardVV: Yup.string()
+        .required('O campo é obrigatório')
+        .matches(/^\d{3}$/, 'O CVV precisa ter 3 caracteres'),
+      expiresMonth: Yup.string()
+        .required('O campo é obrigatório')
+        .test('valid-month', 'Digite um mês válido (01 a 12)', (value) => {
+          const month = parseInt(value, 10)
+          return month >= 1 && month <= 12
+        })
+        .matches(/^\d{2}$/, 'Digite um mês válido (01 a 12)'),
+      expiresYear: Yup.string()
+        .required('O campo é obrigatório')
+        .matches(/^\d{2}$/, 'O endereço precisa ter pelo menos 2 caracteres')
     }),
     onSubmit: (values) => {
       purchase({
@@ -83,24 +102,30 @@ const Payment = () => {
     dispatch(changeStatus(previousStatus))
   }
 
-  if (isSuccess) {
-    console.log(' isSuccess => ' + isSuccess)
-    console.log(' data => ' + data?.orderId)
-  }
-
   useEffect(() => {
     if (isSuccess) {
       dispatch(clear())
+      setResetForm(true)
     }
   }, [isSuccess, dispatch])
 
+  useEffect(() => {
+    if (resetForm) {
+      const nextStatus = Status.Finish
+      dispatch(changeStatus(nextStatus))
+      form.resetForm()
+      setResetForm(false)
+    }
+  }, [resetForm, form, dispatch])
+
   const closeCart = () => {
     dispatch(close())
+    reset()
   }
 
   return (
     <>
-      {status.status === Status.Payment ? (
+      {status.status === Status.Payment || status.status === Status.Finish ? (
         <SideBar>
           <S.SideBar>
             {isSuccess && data ? (

@@ -31,6 +31,13 @@ export const Card = styled.div`
       max-width: 100%;
     }
   }
+
+  p {
+    @media (max-width: ${breakpoints.desktop}) {
+      overflow-y: auto;
+      height: 100px;
+    }
+  }
 `
 export const Title = styled.h3`
   font-size: 16px;

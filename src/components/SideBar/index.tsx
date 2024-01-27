@@ -11,10 +11,13 @@ type Props = {
 
 const SideBar = ({ children }: Props) => {
   const { isOpen } = useSelector((state: RootReducer) => state.cart)
+  const { status } = useSelector((state: RootReducer) => state)
   const dispatch = useDispatch()
 
   const closeCart = () => {
-    dispatch(close())
+    if (status.status !== Status.Finish) {
+      dispatch(close())
+    }
   }
 
   return (
